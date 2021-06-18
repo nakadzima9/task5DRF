@@ -14,9 +14,9 @@ Step by step
 mkdir django-site
 cd django-site
 ```
-Now need create a virtual environment
+Now need create a virtual environment.
 
-open Terminal (Konsole) in django site folder, then we enter the following code:
+Open Terminal (Konsole) in django site folder, then we enter the following code:
 ```bash
 python3 -m venv venv
 ```
