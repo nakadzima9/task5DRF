@@ -66,4 +66,6 @@ sqlparse==0.4.1
 
 Deployed to Heroku
 
-**I'll post it soon**
+https://boiling-caverns-34431.herokuapp.com/
+
+**I will fix it soon**
