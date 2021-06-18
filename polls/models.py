@@ -3,7 +3,8 @@ from django.db import models
 class Course(models.Model):
     name= models.CharField(max_length=64)
     description= models.CharField(max_length=254)
-    logo= models.ImageField(upload_to='media/jpg/')
+    logo= models.ImageField(blank=True, upload_to='jpg/')
+    category= models.ForeignKey('Category',related_name='category', on_delete=models.CASCADE,null=True)
     def __str__(self):
         return self.name
 
@@ -11,7 +12,7 @@ class Branch(models.Model):
     laitude = models.CharField(max_length=64)
     longitude= models.CharField(max_length=64)
     address= models.CharField(max_length=64)
-    branchs= models.ForeignKey('Course', related_name='branchs',on_delete=models.CASCADE,null=True)    
+    course= models.ForeignKey('Course', related_name='course',on_delete=models.CASCADE,null=True)    
     def __str__(self):
         return self.address
 
@@ -30,6 +31,5 @@ class Contact(models.Model):
 class Category(models.Model):
     name= models.CharField(max_length=64)
     imgpath= models.CharField(max_length=64)
-    category= models.ForeignKey('Course',related_name='category', on_delete=models.CASCADE,null=True)
     def __str__(self):
         return self.name

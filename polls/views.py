@@ -2,8 +2,8 @@ from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from polls.models import Course
-from polls.app_serializers import CourseSerializer
+from .models import Course
+from .app_serializers import CourseSerializer
 
 
 class CourseList(APIView):
@@ -31,7 +31,7 @@ class CourseDetail(APIView):
         serializer = CourseSerializer(course)
         return Response(serializer.data)
 
-    def put(self, request, pk, format=None):
+    def post(self, request, pk, format=None):
         course = self.get_object(pk)
         serializer = CourseSerializer(course, data=request.data)
         if serializer.is_valid():

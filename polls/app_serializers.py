@@ -1,14 +1,16 @@
 from rest_framework import serializers
-from polls.models import Course, Category, Branch, Contact
+from .models import Course, Category, Branch, Contact
 
 class BranchSerializer(serializers.ModelSerializer):
     class Meta:
         model=Branch
         fields=['laitude','longitude','address']
+
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model=Category
         fields=['name','imgpath']
+
 class ContactSerializer(serializers.ModelSerializer):
     class Meta:
         model= Contact
@@ -16,17 +18,19 @@ class ContactSerializer(serializers.ModelSerializer):
 
 
 class CourseSerializer(serializers.ModelSerializer):
-    branchs=BranchSerializer(many=True)
+    course=BranchSerializer(many=True)
     contacts=ContactSerializer(many=True)
-    category=CategorySerializer(many=True)
+    
     class Meta:
         model=Course
-        fields=['name','description','category','contacts','logo','branchs']
+        fields=['name','description','category','contacts','logo','course']
+    
     def create(self, validated_data):
         branchs_data = validated_data.pop('branchs')
         contacts_data = validated_data.pop('contacts')
         categorys_data = validated_data.pop('category')
         course = Course.objects.create(**validated_data)
+        
         for branch_data in branchs_data:
             Branch.objects.create(course=course, **branch_data)
         for contact_data in contacts_data:
