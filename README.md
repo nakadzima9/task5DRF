@@ -66,4 +66,4 @@ sqlparse==0.4.1
 
 Deployed to Heroku
 
-**https://neobis-mamatazim.herokuapp.com/**
+**https://neobis-mamatazim.herokuapp.com/Course/**
